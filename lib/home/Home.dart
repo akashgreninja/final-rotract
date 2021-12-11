@@ -17,11 +17,11 @@ class Home extends StatelessWidget {
             automaticallyImplyLeading: false,
             title: PreferredSize(
               preferredSize: Size.fromHeight(300.0),
-              child: Image.asset('title_logo.png',
-              height: 250.0,
-              scale: 0.001),
+              //child: Image.asset('title_logo.png',
+              //height: 250.0,
+              //scale: 0.001),
             ),
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
             actions: !isWidthSmall?[
               FlatButton(
                 onPressed: () {},
@@ -95,8 +95,7 @@ class Home extends StatelessWidget {
               title: Text('Rotary'),
               leading: Icon(Icons.settings),
               onTap: () {
-                // Update the state of the app.
-                // ...
+
               },
             ),
             ListTile(

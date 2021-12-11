@@ -3,20 +3,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rotaract_website/Board/Board.dart';
+import 'package:rotaract_website/Board/Gallery.dart';
 import 'package:rotaract_website/Contact/Contact_us.dart';
 import 'package:rotaract_website/DashBoard/dashboard.dart';
-import 'package:rotaract_website/Event/Event.dart';
+import 'package:rotaract_website/Event/Facilities.dart';
 import 'package:rotaract_website/Register/cybersec.dart';
 import 'package:rotaract_website/Register/logIn.dart';
 import 'package:rotaract_website/Register/razorpayWeb.dart';
-import 'package:rotaract_website/Rotary/Rotary.dart';
+import 'package:rotaract_website/Rotary/Placements.dart';
 import 'package:rotaract_website/Rotary/prism.dart';
 import 'package:rotaract_website/home/Home.dart';
 import 'package:rotaract_website/home/homePage.dart';
 import 'package:rotaract_website/Register/register.dart';
 import 'package:rotaract_website/services/sharedPref.dart';
 import 'package:rotaract_website/services/styles.dart';
+import 'package:rotaract_website/home/Stats.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,19 +56,20 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             routes: {
               '/': (context) => HomePage(),
-              '/rotary': (context) => Rotary(),
-              '/events': (context) => Event(),
-              '/board': (context) => Board(),
+              '/Placements': (context) => Rotary(),
+              '/Facilities': (context) => Facilities(),
+              '/Gallery': (context) => Gallery(),
               '/contact_us': (context) => Contact_us(),
               '/register': (context) => Register(),
               '/login': (context) => SignIn(),
               '/dashboard': (context) => DashBoard(),
               '/prism': (context) => Prism(),
               '/payment': (context) => RazorPayWeb(),
-              // '/cybersec': (context) => CyberSec(),
+               '/cybersec': (context) => CyberSec(),
+              '/Stats':(context) =>Stats(),
             },
             initialRoute: '/',
-            title: 'Rotaract Club of BIT',
+            title: 'Placement Cell Of Bit',
             theme: Styles.themeData(themeProvider.darkTheme, context, true),
             // darkTheme: Styles.themeData(themeProvider.darkTheme, context, false),
           );

@@ -16,7 +16,7 @@ class Gallery extends StatefulWidget {
 
 
 
-class _GalleryState extends State<Board> {
+class _GalleryState extends State<Gallery> {
   ScrollController _scrollController;
   double _opacity = 0;
   double _scrollPosition = 0;
@@ -40,9 +40,36 @@ class _GalleryState extends State<Board> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     bool isScreenSmall = screenSize.width < 800;
-    _opacity = _scrollPosition < screenSize.height * 0.4 ? 0.75 : 1;
+    _opacity = _scrollPosition < screenSize.height * 0.4 ? 0.75 : 1.0;
+    // print(screenSize.height*0.45);
+    // print(screenSize.width);
     final themeChange = Provider.of<DarkThemeProvider>(context);
+    // Future.delayed(
+    //     Duration.zero,
+    //     () => !isPopped
+    //         ? showDialog(
+    //             context: context,
+    //             builder: (context) => AlertDialog(
+    //                   title: Container(
+    //                       height: 600,
+    //                       width: 480,
+    //                       child:
+    //                           Center(child: Image.asset('Trade-itional.png'))),
+    //                   actions: [
+    //                     TextButton(
+    //                         onPressed: () {
+    //                           Navigator.of(context).pop();
+
+    //                           setState(() {
+    //                             isPopped = true;
+    //                           });
+    //                         },
+    //                         child: Text('Close'))
+    //                   ],
+    //                 ))
+    //         : null);
     return Scaffold(
+      // extendBodyBehindAppBar: true,
       appBar: isScreenSmall
           ? AppBar(
         title: Image.asset(
@@ -50,17 +77,30 @@ class _GalleryState extends State<Board> {
           fit: BoxFit.contain,
           height: screenSize.height * 0.08,
         ),
+        backgroundColor: Colors.grey.withOpacity(_opacity),
       )
           : PreferredSize(
         preferredSize: Size(screenSize.width, screenSize.height * 0.15),
         child: Card(
-          color: Colors.grey[900].withOpacity(_opacity),
+
           elevation: 10,
+
+          // color: Color.fromRGBO(0, 51, 102, 0.9),
           child: Container(
-            color: Colors.grey[900].withOpacity(_opacity),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end:Alignment.centerRight,
+                  colors: [
+                    Color.fromRGBO(0, 0, 0, 0.9),
+                    Color.fromRGBO(42, 42, 114,0.9 ),
+                  ]
+              ),
+            ),
+
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  vertical: 20.0, horizontal: screenSize.width * 0.1),
+                  vertical: 0, horizontal: screenSize.width * 0.1),
               child: Row(
                 children: [
                   Image.asset('bitlogo.png', height: 250.0),
@@ -79,19 +119,20 @@ class _GalleryState extends State<Board> {
                           },
                           child: Text(
                             'Home',
-                            style: TextStyle(
+                            style: GoogleFonts.aBeeZee(
                                 color: _isHovering[0]
-                                    ? Colors.pink
-                                    : Colors.orange,
-                                fontFamily: 'Montserrat',
+                                    ? Colors.white
+                                    : Colors.white,
+
                                 fontSize: 18.0,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline),
                           ),
                         ),
                         SizedBox(width: screenSize.width / 20),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/events');
+                            Navigator.pushNamed(context, '/Facilities');
                           },
                           onHover: (ishoverd) {
                             setState(() {
@@ -99,11 +140,11 @@ class _GalleryState extends State<Board> {
                             });
                           },
                           child: Text(
-                            'Events',
-                            style: TextStyle(
+                            'Facilities \nand Placements',
+                            style: GoogleFonts.aBeeZee(
                                 color: _isHovering[1]
-                                    ? Colors.pink
-                                    : Colors.orange,
+                                    ? Colors.white
+                                    : Colors.white,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -111,28 +152,38 @@ class _GalleryState extends State<Board> {
                         SizedBox(width: screenSize.width / 20),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/rotary');
+                            Navigator.pushNamed(context, '/Placements');
                           },
                           onHover: (ishoverd) {
                             setState(() {
                               _isHovering[2] = ishoverd;
                             });
                           },
-                          child: Text(
-                            'Rotary',
-                            style: TextStyle(
+                          child:
+
+                          Text(
+                            'Placements',
+                            style: GoogleFonts.aBeeZee(
                                 color: _isHovering[2]
-                                    ? Colors.pink
-                                    : Colors.orange,
-                                decoration: TextDecoration.underline,
+                                    ? Colors.white
+                                    : Colors.white,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w600),
+
+
                           ),
+
                         ),
+
+                        IconButton(onPressed: () {
+                          Navigator.pushNamed(context, '/Stats');
+                        },
+
+                            icon:Icon(Icons.arrow_drop_down)),
                         SizedBox(width: screenSize.width / 20),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, '/board');
+                            Navigator.pushNamed(context, '/Gallery');
                           },
                           onHover: (ishoverd) {
                             setState(() {
@@ -140,13 +191,15 @@ class _GalleryState extends State<Board> {
                             });
                           },
                           child: Text(
-                            'Board',
-                            style: TextStyle(
+                            'Gallery',
+                            style: GoogleFonts.aBeeZee(
                                 color: _isHovering[3]
-                                    ? Colors.pink
-                                    : Colors.orange,
+                                    ? Colors.white
+                                    : Colors.white,
                                 fontSize: 18.0,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w600
+                              //decoration: TextDecoration.underline
+                            ),
                           ),
                         ),
                         SizedBox(width: screenSize.width / 20),
@@ -161,115 +214,116 @@ class _GalleryState extends State<Board> {
                           },
                           child: Text(
                             'Contact Us',
-                            style: TextStyle(
+                            style: GoogleFonts.aBeeZee(
                                 color: _isHovering[4]
-                                    ? Colors.pink
-                                    : Colors.orange,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w600),
+                                    ? Colors.white
+                                    : Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18.0),
                           ),
                         )
                       ],
                     ),
                   ),
-                  themeChange.isSignedIn
-                      ? DropdownButton<String>(
-                    // value: themeChange.username!=null && !themeChange.username.isEmpty?themeChange.username:'Loading',
-                    iconSize: 0,
-                    value: "DashBoard",
-                    elevation: 8,
-                    underline: Container(
-                      height: 2,
-                      color: Colors.transparent,
-                    ),
-                    onChanged: (val) {
-                      setState(() {
-                        if (val.compareTo("Sign Out") == 0) {
-                          Database("", "", "", "", "", "")
-                              .signOut();
-                          themeChange.username = "";
-                          themeChange.email = "";
-                          themeChange.isSignedIn = false;
-                        } else if (val.compareTo("DashBoard") == 0)
-                          Navigator.pushNamed(
-                              context, '/dashboard');
-                      });
-                    },
-                    style: GoogleFonts.montserrat(
-                      color: Colors.orange,
-                    ),
-                    items: <String>[
-                      'DashBoard',
-                      'Sign Out'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  )
-                      : Row(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          _launchURL(
-                              'https://rzp.io/l/rotaractRegistration');
-                        },
-                        onHover: (val) {
-                          setState(() {
-                            _isHovering[5] = val;
-                          });
-                        },
-                        child: Text(
-                          "Register",
-                          style: GoogleFonts.openSans(
-                              fontWeight: FontWeight.w400,
-                              color: _isHovering[5]
-                                  ? Colors.pink
-                                  : Colors.orange,
-                              fontSize: 17),
-                        ),
-                      ),
-                      SizedBox(
-                        width: screenSize.width * 0.01,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/login');
-                        },
-                        onHover: (val) {
-                          setState(() {
-                            _isHovering[6] = val;
-                          });
-                        },
-                        child: Text(
-                          "Log In",
-                          style: GoogleFonts.openSans(
-                              fontWeight: FontWeight.w400,
-                              color: _isHovering[6]
-                                  ? Colors.pink
-                                  : Colors.orange,
-                              fontSize: 17),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(width: screenSize.width * 0.01),
-                  IconButton(
-                    icon: Icon(Icons.brightness_medium,
-                        color: themeChange.darkTheme
-                            ? Colors.white
-                            : Colors.grey[400]),
-                    onPressed: () {
-                      themeChange.darkTheme = !themeChange.darkTheme;
-                    },
-                  )
+                  // themeChange.isSignedIn
+                  //     ? DropdownButton<String>(
+                  //         // value: themeChange.username!=null && !themeChange.username.isEmpty?themeChange.username:'Loading',
+                  //         iconSize: 0,
+                  //         value: "DashBoard",
+                  //         elevation: 8,
+                  //         underline: Container(
+                  //           height: 2,
+                  //           color: Colors.transparent,
+                  //         ),
+                  //         onChanged: (val) {
+                  //           setState(() {
+                  //             if (val.compareTo("Sign Out") == 0) {
+                  //               Database("", "", "", "", "", "")
+                  //                   .signOut();
+                  //               themeChange.username = "";
+                  //               themeChange.email = "";
+                  //               themeChange.isSignedIn = false;
+                  //             } else if (val.compareTo("DashBoard") == 0)
+                  //               Navigator.pushNamed(
+                  //                   context, '/dashboard');
+                  //           });
+                  //         },
+                  //         style: GoogleFonts.montserrat(
+                  //           color: Colors.orange,
+                  //         ),
+                  //         items: <String>[
+                  //           'DashBoard',
+                  //           'Sign Out'
+                  //         ].map<DropdownMenuItem<String>>((String value) {
+                  //           return DropdownMenuItem<String>(
+                  //             value: value,
+                  //             child: Text(value),
+                  //           );
+                  //         }).toList(),
+                  //       )
+                  //     : Row(
+                  //         children: [
+                  //           InkWell(
+                  //             onTap: () {
+                  //               _launchURL(
+                  //                   'https://rzp.io/l/rotaractRegistration');
+                  //             },
+                  //             onHover: (val) {
+                  //               setState(() {
+                  //                 _isHovering[5] = val;
+                  //               });
+                  //             },
+                  //             child: Text(
+                  //               "Register",
+                  //               style: GoogleFonts.openSans(
+                  //                   fontWeight: FontWeight.w400,
+                  //                   color: _isHovering[5]
+                  //                       ? Colors.pink
+                  //                       : Colors.orange,
+                  //                   fontSize: 17),
+                  //             ),
+                  //           ),
+                  //           SizedBox(
+                  //             width: screenSize.width * 0.01,
+                  //           ),
+                  //           InkWell(
+                  //             onTap: () {
+                  //               Navigator.pushNamed(context, '/login');
+                  //             },
+                  //             onHover: (val) {
+                  //               setState(() {
+                  //                 _isHovering[6] = val;
+                  //               });
+                  //             },
+                  //             child: Text(
+                  //               "Log In",
+                  //               style: GoogleFonts.openSans(
+                  //                   fontWeight: FontWeight.w400,
+                  //                   color: _isHovering[6]
+                  //                       ? Colors.pink
+                  //                       : Colors.orange,
+                  //                   fontSize: 17),
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  // SizedBox(width: screenSize.width * 0.01),
+                  // IconButton(
+                  //   icon: Icon(Icons.brightness_medium,
+                  //       color: themeChange.darkTheme
+                  //           ? Colors.white
+                  //           : Colors.grey[400]),
+                  //   onPressed: () {
+                  //     themeChange.darkTheme = !themeChange.darkTheme;
+                  //   },
+                  // )
                 ],
               ),
             ),
           ),
         ),
       ),
+
       drawer: isScreenSmall
           ? Drawer(
         child: ListView(
@@ -394,20 +448,20 @@ class _GalleryState extends State<Board> {
                   Stack(
                     children: [
                       Padding(
-                        padding:EdgeInsets.all(30),
+                        padding:EdgeInsets.all(10),
                         child: Container(
-                          height: screenSize.height
+                          height: screenSize.height*0.1,
 
-                          ,
+
                           width: screenSize.width,
-                          child: Image.asset(
-                            themeChange.darkTheme
-                                ? 'placementgraph3.jpg'
-                                : 'placementgraph3.jpg',
-                            height: screenSize.height * 0.9,
-                            width: screenSize.width * 0.9,
-                            fit: BoxFit.cover,
-                          ),
+                          // child: Image.asset(
+                          //   themeChange.darkTheme
+                          //       ? 'placementgraph3.jpg'
+                          //       : 'placementgraph3.jpg',
+                          //   height: screenSize.height * 0.9,
+                          //   width: screenSize.width * 0.9,
+                          //   fit: BoxFit.cover,
+                          // ),
                         ),
                       ),
                     ],
@@ -421,126 +475,135 @@ class _GalleryState extends State<Board> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Image.asset('rotary_international.png',
-                          //     fit: BoxFit.contain, width: 450.0, scale: 0.01),
+                          Text("Activities Conducted By the Department Of Training & Placement",
+                            style:GoogleFonts.lato(
+                              fontSize: 40,letterSpacing: 2.0,fontWeight: FontWeight.bold,decoration: TextDecoration.underline,
+                            ),),
+                          SizedBox(height: 60,),
+
+                          Center(
+                            child: Image.asset('pic1.jpg',
+                                fit: BoxFit.contain, width: 450.0, scale: 0.01),
+                          ),
+                          Center(child: Text("Pre-Placement Talk of Infosys",style:GoogleFonts.lato(fontSize: 20,letterSpacing: 2.0,color: Colors.blue),)),
                           SizedBox(height: 0.0),
-                          Container(
-                            color: Colors.blue,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 11.0),
-                            child: FlatButton(
-                              onPressed: () {
-
-                              },
-                              child: Text(
-                                'Placement Statistics In The Recent Years',
-                                style: TextStyle(
-                                    color: themeChange.darkTheme
-                                        ? Colors.black
-                                        : Colors.black,
-                                    fontSize: 40.0,
-                                    letterSpacing: 2.0,fontWeight: FontWeight.bold),
-                              ),
-                            ),
-
-
-                          ),
-                          SizedBox(height: 10,),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/10/PLACEMENTS.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2022 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2021.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2021 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2020.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2020 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/12/Companies-during-2019.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2019 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2018new.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2018 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2017.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          Container(
-                            color: Colors.blue,
-                            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                            child:  Text("BATCH WISE PLACEMENTS",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,letterSpacing: 2.0),),
-
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/06/Placement-Details-2020.xlsx-Sheet2.pdf');
-
-                            },
-                            child:  Text("Placement Details-2020",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/08/Placemnet-Details-2019-2019-final-1.pdf');
-
-                            },
-                            child:  Text('Placement Details-2019',style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
-
-                            },
-                            child:  Text("Placement Details-2018",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          FlatButton(
-                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
-
-                            },
-                            child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
-                            TextStyle(fontSize: 20),
-                            ),
-                          ),
+                          // Container(
+                          //   color: Colors.blue,
+                          //   padding: EdgeInsets.symmetric(
+                          //       vertical: 10.0, horizontal: 11.0),
+                          //   child: FlatButton(
+                          //     onPressed: () {
+                          //
+                          //     },
+                          //     child: Text(
+                          //       'Placement Statistics In The Recent Years',
+                          //       style: TextStyle(
+                          //           color: themeChange.darkTheme
+                          //               ? Colors.black
+                          //               : Colors.black,
+                          //           fontSize: 40.0,
+                          //           letterSpacing: 2.0,fontWeight: FontWeight.bold),
+                          //     ),
+                          //   ),
+                          //
+                          //
+                          // ),
+                          // SizedBox(height: 10,),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/10/PLACEMENTS.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2022 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2021.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2021 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2020.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2020 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/12/Companies-during-2019.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2019 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2018new.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2018 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2017.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // Container(
+                          //   color: Colors.blue,
+                          //   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                          //   child:  Text("BATCH WISE PLACEMENTS",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,letterSpacing: 2.0),),
+                          //
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/06/Placement-Details-2020.xlsx-Sheet2.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Placement Details-2020",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/08/Placemnet-Details-2019-2019-final-1.pdf');
+                          //
+                          //   },
+                          //   child:  Text('Placement Details-2019',style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Placement Details-2018",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 5),
+                          // FlatButton(
+                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
+                          //
+                          //   },
+                          //   child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
+                          //   TextStyle(fontSize: 20),
+                          //   ),
+                          // ),
                           // Image.asset("placementgraph.jpg"),
                           //  SizedBox(height: 50.0),
                           //  Text(

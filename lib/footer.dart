@@ -21,7 +21,17 @@ class _FooterState extends State<Footer> {
     bool isScreenSmall = screenSize.width<800;
     return Container(
       padding: EdgeInsets.all(30.0),
-      color: Colors.blueGrey[800],
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Color.fromRGBO(0, 0, 0, 0.9),
+            Color.fromRGBO(42, 42, 114,0.9 ),
+          ]
+        ),
+      ),
+
       child: isScreenSmall? Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -33,7 +43,7 @@ class _FooterState extends State<Footer> {
                 // heading: 'About Us',
                 s1: 'Contact Us',
                 // s2: 'About Us',
-                s3: 'Why join Us',
+                s3: 'Locate Us',
               )
             ],
           ),
@@ -50,7 +60,7 @@ class _FooterState extends State<Footer> {
                   width: screenSize.height*0.05,
                 ),
                 onTap: () {
-                  _launchURL('https://www.instagram.com/rotaractclubofbit/');
+                  _launchURL('https://www.youtube.com/watch?v=ZUj6k5LQrJ0');
                 },
                 hoverColor: Colors.transparent,
               ),
@@ -119,10 +129,11 @@ class _FooterState extends State<Footer> {
       ):Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //Todo : remove about us and centre about us
+
         children: [
-          Container(height: 125,
-              child: Image.asset('title_logo.png')),
+          Container(height: 200,
+              child: Image.asset('bitlogo.png')),
+          Text("© 2021 BIT. All rights reserved.\n Bangalore Institute of Technology (BIT)"),
 
           Row(
             mainAxisSize: MainAxisSize.max,
@@ -133,7 +144,7 @@ class _FooterState extends State<Footer> {
                   // heading: 'About Us',
                   s1: 'Contact Us',
                   //s2: 'About Us',
-                  s3: 'Why join Us',
+                  s3: 'Locate Us',
                 ),
               )
             ],

@@ -1,21 +1,22 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:rotaract_website/event.dart';
 import 'package:rotaract_website/footer.dart';
 import 'package:rotaract_website/services/Database.dart';
 import 'package:rotaract_website/services/sharedPref.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
-class Facilities extends StatefulWidget {
+
+class Stats extends StatefulWidget {
+
+
   @override
-  _FacilitiesState createState() => _FacilitiesState();
+  _StatsState createState() => _StatsState();
 }
 
-class _FacilitiesState extends State<Facilities> {
+
+
+class _StatsState extends State<Stats> {
   ScrollController _scrollController;
   double _opacity = 0;
   double _scrollPosition = 0;
@@ -34,8 +35,6 @@ class _FacilitiesState extends State<Facilities> {
       throw 'Could not launch $url';
     }
   }
-
-
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -140,7 +139,7 @@ class _FacilitiesState extends State<Facilities> {
                             });
                           },
                           child: Text(
-                            'Facilities',
+                            'Events',
                             style: GoogleFonts.aBeeZee(
                                 color: _isHovering[1]
                                     ? Colors.white
@@ -323,8 +322,7 @@ class _FacilitiesState extends State<Facilities> {
           ),
         ),
       ),
-
-      drawer: isScreenSmall
+      drawer:isScreenSmall
           ? Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.
@@ -333,7 +331,7 @@ class _FacilitiesState extends State<Facilities> {
             DrawerHeader(
               child: Column(
                 children: [
-                  Image.asset('bitlogo.png',
+                  Image.asset('assets/title_logo.png',
                       height: 120.0, width: 250.0, scale: 0.1),
                   Text('henloooooo'),
                 ],
@@ -448,299 +446,248 @@ class _FacilitiesState extends State<Facilities> {
                   Stack(
                     children: [
                       Padding(
-                        padding:EdgeInsets.all(10),
+                        padding:EdgeInsets.all(30),
                         child: Container(
-                          height: screenSize.height*0.1,
+                          height: screenSize.height
 
-
+                          ,
                           width: screenSize.width,
-                          // child: Image.asset(
-                          //   themeChange.darkTheme
-                          //       ? 'placementgraph3.jpg'
-                          //       : 'placementgraph3.jpg',
-                          //   height: screenSize.height * 0.9,
-                          //   width: screenSize.width * 0.9,
-                          //   fit: BoxFit.cover,
-                          // ),
+                          child: Image.asset(
+                           themeChange.darkTheme
+                               ? 'placementgraph3.jpg'
+                              : 'placementgraph3.jpg',
+                            //   height: screenSize.height * 0.9,
+                            //   width: screenSize.width * 0.9,
+                            // fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ],
                   ),
-
-                     Padding(
+                  Center(
+                    child: Padding(
                       padding: EdgeInsets.symmetric(
                           vertical: screenSize.height * 0.01,
                           horizontal:
                           isScreenSmall ? 16 : screenSize.width * 0.2),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-
-
-                          SizedBox(height: 60,),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-
-
-                                 Image.asset('pic2.jpg',
-                                    fit: BoxFit.contain, width: 300.0, scale: 0.01),
-                                
-
-
-                            ],
-                          ),
-
-
-                           Text("Placement cell",style:GoogleFonts.lato(fontSize: 30,letterSpacing: 2.0,color: Colors.blue,fontWeight: FontWeight.bold),),
-                          SizedBox(height: 50,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Color(0xff000000),
-                                      width: 2,
-
-                                    )),
-                              child:Image.asset('pic2.jpg',fit: BoxFit.contain, width: 300.0, scale: 0.01),),
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Color(0xff000000),
-                                      width: 2,
-
-                                    )),
-                                child:Image.asset('pic2.jpg',fit: BoxFit.contain, width: 300.0, scale: 0.01),),
-
-
-
-
-
-
-
-
-
-                            ],
-                          ),
-
-                          Text('Seminar Hall',style:GoogleFonts.lato(fontSize: 30,letterSpacing: 2.0,color: Colors.blue,fontWeight: FontWeight.bold),),
-
+                          // Image.asset('rotary_international.png',
+                          //     fit: BoxFit.contain, width: 450.0, scale: 0.01),
                           SizedBox(height: 0.0),
-                          // Container(
-                          //   color: Colors.blue,
-                          //   padding: EdgeInsets.symmetric(
-                          //       vertical: 10.0, horizontal: 11.0),
-                          //   child: FlatButton(
-                          //     onPressed: () {
-                          //
-                          //     },
-                          //     child: Text(
-                          //       'Placement Statistics In The Recent Years',
-                          //       style: TextStyle(
-                          //           color: themeChange.darkTheme
-                          //               ? Colors.black
-                          //               : Colors.black,
-                          //           fontSize: 40.0,
-                          //           letterSpacing: 2.0,fontWeight: FontWeight.bold),
-                          //     ),
-                          //   ),
-                          //
-                          //
-                          // ),
-                          // SizedBox(height: 10,),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/10/PLACEMENTS.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2022 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2021.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2021 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2020.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2020 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/12/Companies-during-2019.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2019 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2018new.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2018 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2017.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // Container(
-                          //   color: Colors.blue,
-                          //   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                          //   child:  Text("BATCH WISE PLACEMENTS",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,letterSpacing: 2.0),),
-                          //
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/06/Placement-Details-2020.xlsx-Sheet2.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Placement Details-2020",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/08/Placemnet-Details-2019-2019-final-1.pdf');
-                          //
-                          //   },
-                          //   child:  Text('Placement Details-2019',style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Placement Details-2018",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 5),
-                          // FlatButton(
-                          //   onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
-                          //
-                          //   },
-                          //   child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
-                          //   TextStyle(fontSize: 20),
-                          //   ),
-                          // ),
-                          // Image.asset("placementgraph.jpg"),
-                          //  SizedBox(height: 50.0),
-                          //  Text(
-                          //      'Rotary was founded in the early 1900s in Chicago Illinois by Paul Harris. The origin of the name is that the meetings would rotate between the Members of individual offices, once the club became too big for this they chose a permanent location for their meetings. Rotary is divided into a federalist or charter system with 35,000 clubs that meet every week all around the world; 530 districts that manage individual clubs, charter new ones, and maintain the link between Rotary International and the clubs. Moreover, there are 34 zones that break up the world in manageable chunks and help with some of the international functions as well as the infrastructure needed by the districts and clubs.',
-                          //      style: GoogleFonts.poppins(
-                          //        // fontFamily: 'Bahnschrift',
-                          //        //sans can also be tried
-                          //          fontSize: 20.0,
-                          //          letterSpacing: 0.5,
-                          //          color: themeChange.darkTheme
-                          //              ? Colors.grey[400]
-                          //              : Colors.grey[900])),
-                          //  SizedBox(height: 100.0),
-                          //  Image.asset('rbse_logo.png',
-                          //      width: 450.0, fit: BoxFit.contain, scale: 0.01),
-                          //  Container(
-                          //    color: Theme.of(context).buttonColor,
-                          //    padding: EdgeInsets.symmetric(
-                          //        vertical: 10.0, horizontal: 11.0),
-                          //    child: FlatButton(
-                          //      onPressed: () {
-                          //        _launchURL(
-                          //            'https://www.instagram.com/p/CCymeL_gJEv/');
-                          //      },
-                          //      child: Text(
-                          //        'Rotary Bangalore Agneya',
-                          //        style: TextStyle(
-                          //          fontFamily: 'Bahnschrift',
-                          //          //sans can also be tried
-                          //          fontSize: 20.0,
-                          //          letterSpacing: 0.5,
-                          //          color: themeChange.darkTheme
-                          //              ? Colors.orange
-                          //              : Color(0xff3B3B3B),
-                          //        ),
-                          //      ),
-                          //    ),
-                          //  ),
-                          //  SizedBox(height: 50.0),
-                          //  Text(
-                          //      "Rotary Bangalore Agneya (RBA) is a club under the umbrella of Rotary International, a non-profit organization. Rotary International is perhaps the largest collection of organized volunteers in the world. Rotary International is divided into districts, which are then sub-divided into clubs.\nRBSE was chartered in the year 2000 as a Rotary club, a mark to begin the millennium. The club today, has 30 members and over the years executed thousands of non-profit projects along with its various youth wings.\nCurrently, the youth wings under RBSE are:",
-                          //      style: GoogleFonts.poppins(
-                          //        // fontFamily: 'Bahnschrift',
-                          //        //sans can also be tried
-                          //          fontSize: 20.0,
-                          //          letterSpacing: 0.5,
-                          //          color: themeChange.darkTheme
-                          //              ? Colors.grey[400]
-                          //              : Colors.grey[900])),
-                          //  SizedBox(
-                          //    height: 10,
-                          //  ),
-                          //  Padding(
-                          //    padding: EdgeInsets.symmetric(
-                          //        horizontal: isScreenSmall
-                          //            ? 16
-                          //            : screenSize.width * 0.04),
-                          //    child: Column(
-                          //      crossAxisAlignment: CrossAxisAlignment.start,
-                          //      children: [
-                          //        Text('1. Rotaract Club of Bangalore B.I.T.',
-                          //            style: GoogleFonts.robotoCondensed(
-                          //              // fontFamily: 'Bahnschrift',
-                          //              //sans can also be tried
-                          //                fontSize: 24,
-                          //                letterSpacing: 0.8,
-                          //                color: themeChange.darkTheme
-                          //                    ? Colors.grey[400]
-                          //                    : Colors.grey[900])),
-                          //        Text(
-                          //            '2. Rotaract Club of Bangalore South East.',
-                          //            style: GoogleFonts.robotoCondensed(
-                          //              // fontFamily: 'Bahnschrift',
-                          //              //sans can also be tried
-                          //                fontSize: 24,
-                          //                letterSpacing: 0.8,
-                          //                color: themeChange.darkTheme
-                          //                    ? Colors.grey[400]
-                          //                    : Colors.grey[900])),
-                          //        // Text(
-                          //        //     '3. Interact club of Shantiniketan Educational Institutions.',
-                          //        //     style: GoogleFonts.robotoCondensed(
-                          //        //       // fontFamily: 'Bahnschrift',
-                          //        //       //sans can also be tried
-                          //        //         fontSize: 24,
-                          //        //         letterSpacing: 0.8,
-                          //        //         color: themeChange.darkTheme
-                          //        //             ? Colors.grey[400]
-                          //        //             : Colors.grey[900])),
-                          //      ],
-                          //    ),
-                          //  ),
-                          //  SizedBox(
-                          //    height: 10,
-                          // ),
+                          Container(
+                            color: Colors.blue,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 11.0),
+                            child: FlatButton(
+                              onPressed: () {
+
+                              },
+                              child: Text(
+                                'Placement Statistics In The Recent Years',
+                                style: TextStyle(
+                                  color: themeChange.darkTheme
+                                      ? Colors.black
+                                      : Colors.black,
+                                    fontSize: 40.0,
+                                    letterSpacing: 2.0,fontWeight: FontWeight.bold),
+                              ),
+                            ),
+
+                            
+                          ),
+                         SizedBox(height: 10,),
+                           FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/10/PLACEMENTS.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2022 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2021.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2021 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/07/Companies-during-2020.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2020 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/12/Companies-during-2019.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2019 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2018new.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2018 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2020/11/Companies-during-2017.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                         Container(
+                           color: Colors.blue,
+                           padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                           child:  Text("BATCH WISE PLACEMENTS",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,letterSpacing: 2.0),),
+
+                         ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2021/06/Placement-Details-2020.xlsx-Sheet2.pdf');
+
+                            },
+                            child:  Text("Placement Details-2020",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/08/Placemnet-Details-2019-2019-final-1.pdf');
+
+                            },
+                            child:  Text('Placement Details-2019',style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
+
+                            },
+                            child:  Text("Placement Details-2018",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          FlatButton(
+                            onPressed: () {_launchURL('https://bit-bangalore.edu.in/wp-content/uploads/2019/09/Placemnet-Details-2018-Final-.pdf');
+
+                            },
+                            child:  Text("Companies that visited BIT to recruit students of 2017 batch",style:
+                            TextStyle(fontSize: 20),
+                            ),
+                          ),
+                           // Image.asset("placementgraph.jpg"),
+                         //  SizedBox(height: 50.0),
+                         //  Text(
+                         //      'Rotary was founded in the early 1900s in Chicago Illinois by Paul Harris. The origin of the name is that the meetings would rotate between the Members of individual offices, once the club became too big for this they chose a permanent location for their meetings. Rotary is divided into a federalist or charter system with 35,000 clubs that meet every week all around the world; 530 districts that manage individual clubs, charter new ones, and maintain the link between Rotary International and the clubs. Moreover, there are 34 zones that break up the world in manageable chunks and help with some of the international functions as well as the infrastructure needed by the districts and clubs.',
+                         //      style: GoogleFonts.poppins(
+                         //        // fontFamily: 'Bahnschrift',
+                         //        //sans can also be tried
+                         //          fontSize: 20.0,
+                         //          letterSpacing: 0.5,
+                         //          color: themeChange.darkTheme
+                         //              ? Colors.grey[400]
+                         //              : Colors.grey[900])),
+                         //  SizedBox(height: 100.0),
+                         //  Image.asset('rbse_logo.png',
+                         //      width: 450.0, fit: BoxFit.contain, scale: 0.01),
+                         //  Container(
+                         //    color: Theme.of(context).buttonColor,
+                         //    padding: EdgeInsets.symmetric(
+                         //        vertical: 10.0, horizontal: 11.0),
+                         //    child: FlatButton(
+                         //      onPressed: () {
+                         //        _launchURL(
+                         //            'https://www.instagram.com/p/CCymeL_gJEv/');
+                         //      },
+                         //      child: Text(
+                         //        'Rotary Bangalore Agneya',
+                         //        style: TextStyle(
+                         //          fontFamily: 'Bahnschrift',
+                         //          //sans can also be tried
+                         //          fontSize: 20.0,
+                         //          letterSpacing: 0.5,
+                         //          color: themeChange.darkTheme
+                         //              ? Colors.orange
+                         //              : Color(0xff3B3B3B),
+                         //        ),
+                         //      ),
+                         //    ),
+                         //  ),
+                         //  SizedBox(height: 50.0),
+                         //  Text(
+                         //      "Rotary Bangalore Agneya (RBA) is a club under the umbrella of Rotary International, a non-profit organization. Rotary International is perhaps the largest collection of organized volunteers in the world. Rotary International is divided into districts, which are then sub-divided into clubs.\nRBSE was chartered in the year 2000 as a Rotary club, a mark to begin the millennium. The club today, has 30 members and over the years executed thousands of non-profit projects along with its various youth wings.\nCurrently, the youth wings under RBSE are:",
+                         //      style: GoogleFonts.poppins(
+                         //        // fontFamily: 'Bahnschrift',
+                         //        //sans can also be tried
+                         //          fontSize: 20.0,
+                         //          letterSpacing: 0.5,
+                         //          color: themeChange.darkTheme
+                         //              ? Colors.grey[400]
+                         //              : Colors.grey[900])),
+                         //  SizedBox(
+                         //    height: 10,
+                         //  ),
+                         //  Padding(
+                         //    padding: EdgeInsets.symmetric(
+                         //        horizontal: isScreenSmall
+                         //            ? 16
+                         //            : screenSize.width * 0.04),
+                         //    child: Column(
+                         //      crossAxisAlignment: CrossAxisAlignment.start,
+                         //      children: [
+                         //        Text('1. Rotaract Club of Bangalore B.I.T.',
+                         //            style: GoogleFonts.robotoCondensed(
+                         //              // fontFamily: 'Bahnschrift',
+                         //              //sans can also be tried
+                         //                fontSize: 24,
+                         //                letterSpacing: 0.8,
+                         //                color: themeChange.darkTheme
+                         //                    ? Colors.grey[400]
+                         //                    : Colors.grey[900])),
+                         //        Text(
+                         //            '2. Rotaract Club of Bangalore South East.',
+                         //            style: GoogleFonts.robotoCondensed(
+                         //              // fontFamily: 'Bahnschrift',
+                         //              //sans can also be tried
+                         //                fontSize: 24,
+                         //                letterSpacing: 0.8,
+                         //                color: themeChange.darkTheme
+                         //                    ? Colors.grey[400]
+                         //                    : Colors.grey[900])),
+                         //        // Text(
+                         //        //     '3. Interact club of Shantiniketan Educational Institutions.',
+                         //        //     style: GoogleFonts.robotoCondensed(
+                         //        //       // fontFamily: 'Bahnschrift',
+                         //        //       //sans can also be tried
+                         //        //         fontSize: 24,
+                         //        //         letterSpacing: 0.8,
+                         //        //         color: themeChange.darkTheme
+                         //        //             ? Colors.grey[400]
+                         //        //             : Colors.grey[900])),
+                         //      ],
+                         //    ),
+                         //  ),
+                         //  SizedBox(
+                         //    height: 10,
+                         // ),
                           // Text(
                           //     "We at RBSE, have been instrumental in many signature projects along with our enthusiastic youth wings. Some of them are:-",
                           //     style: GoogleFonts.poppins(
@@ -862,11 +809,11 @@ class _FacilitiesState extends State<Facilities> {
                           //         color: themeChange.darkTheme
                           //             ? Colors.grey[400]
                           //             : Colors.grey[900])),
-
+                         
                         ],
                       ),
                     ),
-
+                  ),
                   Footer()
                 ],
               ),

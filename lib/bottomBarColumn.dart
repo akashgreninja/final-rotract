@@ -1,7 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+
+class ggs extends StatefulWidget {
+
+  @override
+  _ggsState createState() => _ggsState();
+}
+_launchURL(url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+class _ggsState extends State<ggs> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 
 class BottomBarColumn extends StatelessWidget {
+
   // final String heading;
   final String s1;
   // final String s2;
@@ -13,6 +37,7 @@ class BottomBarColumn extends StatelessWidget {
     // this.s2,
     this.s3,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +63,7 @@ class BottomBarColumn extends StatelessWidget {
             child: Text(
               s1,
               style: TextStyle(
-                color: Colors.blueGrey[100],
+                color: Colors.white,
                 fontSize: 14,
               ),
             ),
@@ -59,12 +84,13 @@ class BottomBarColumn extends StatelessWidget {
           SizedBox(height: 5),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, '/');
-            },
+    _launchURL('https://goo.gl/maps/eVQKLJzCEko4wxed9');
+    },
+
             child: Text(
               s3,
               style: TextStyle(
-                color: Colors.blueGrey[100],
+                color: Colors.white,
                 fontSize: 14,
               ),
             ),
@@ -119,7 +145,7 @@ class BottomBarRow extends StatelessWidget {
                     child: Text(
                       s1,
                       style: TextStyle(
-                        color: Colors.blueGrey[100],
+                        color: Colors.white,
                         fontSize: 14,
                       ),
                     ),
@@ -146,12 +172,13 @@ class BottomBarRow extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/');
+                      _launchURL('https://goo.gl/maps/eVQKLJzCEko4wxed9');
+
                     },
                     child: Text(
                       s3,
                       style: TextStyle(
-                        color: Colors.blueGrey[100],
+                        color: Colors.white,
                         fontSize: 14,
                       ),
                     ),
